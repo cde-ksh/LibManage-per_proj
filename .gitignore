@@ -10,4 +10,10 @@ env/
 
 .DS_Store
 
+# Uploaded/generated files
+backend/images/
+backend/resume/
+backend/files/
+
+
 *.log
