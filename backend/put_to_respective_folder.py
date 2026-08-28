@@ -5,32 +5,31 @@ from backend.upload_file import get_file
 BASE_DIR = Path("/Users/kshiraj/Desktop/LibManage/backend")
 RESUME_DIR = BASE_DIR / "resume"
 IMAGES_DIR = BASE_DIR / "images"
+CERTIFICATE_DIR = BASE_DIR / "certificates"
+MARKSHEET_DIR = BASE_DIR / "marksheets"
+PROJECT_DIR = BASE_DIR / "projects"
+OTHER_DIR = BASE_DIR / "other"
+
+FOLDERS = {
+    "resume": RESUME_DIR,
+    "certificate": CERTIFICATE_DIR,
+    "image": IMAGES_DIR,
+    "marksheet": MARKSHEET_DIR,
+    "project": PROJECT_DIR,
+    "other": OTHER_DIR
+}
 
 IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
-def put_file(file_path):
-    file_path = Path(file_path)
+def put_file(file_path, document_type):
+    destination_folder = FOLDERS[document_type]
 
-    if not file_path.exists():
-        raise FileNotFoundError(f"file not found: {file_path}")
-    
-    RESUME_DIR.mkdir(parents=True, exist_ok=True)
-    IMAGES_DIR.mkdir(parents=True, exist_ok=True)
+    destination = destination_folder / Path(file_path).name
 
-    if file_path.suffix.lower() == ".pdf":
-        destination = RESUME_DIR / file_path.name
-
-    elif file_path.suffix.lower() in IMAGE_EXTENSIONS:
-        destination = IMAGES_DIR / file_path.name
-    
-    else:
-        raise ValueError(
-            f"Unsupported file type: {file_path.suffix or 'no extension'}"
-        )
     shutil.move(str(file_path), str(destination))
 
-    return destination
-
+    return destination    
+    
 
 if __name__ == "__main__":
     uploaded_file = get_file()
