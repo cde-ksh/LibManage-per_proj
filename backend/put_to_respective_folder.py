@@ -23,9 +23,9 @@ IMAGE_EXTENSIONS = {".png", ".jpg", ".jpeg", ".webp", ".gif"}
 
 def put_file(file_path, document_type):
     destination_folder = FOLDERS[document_type]
-
+    destination_folder.mkdir(parents=True, exist_ok=True)
     destination = destination_folder / Path(file_path).name
-
+    
     shutil.move(str(file_path), str(destination))
 
     return destination    
