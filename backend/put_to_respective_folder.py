@@ -2,7 +2,7 @@ import shutil
 from pathlib import Path
 from backend.upload_file import get_file
 
-BASE_DIR = Path("/Users/kshiraj/Desktop/LibManage/backend")
+BASE_DIR = Path("/Users/kshiraj/Desktop/LibManage/backend/filemanager")
 RESUME_DIR = BASE_DIR / "resume"
 IMAGES_DIR = BASE_DIR / "images"
 CERTIFICATE_DIR = BASE_DIR / "certificates"
