@@ -1,17 +1,12 @@
-from backend.upload_file import get_file
+from backend.upload_file import get_file, get_destination
 from backend.put_to_respective_folder import put_file
-from backend.extractor.text_extractor import extract_text
-from backend.classifier.classification import classify_document
 
 def main():
     file_path = get_file()
 
-    text = extract_text(file_path)
+    destination = get_destination()
 
-    document_type = classify_document(text)
-    print(f"Document type: {document_type}")
-
-    moved_file = put_file(file_path, document_type)
+    moved_file = put_file(file_path, destination)
 
     print(f"File moved to: {moved_file}")
 

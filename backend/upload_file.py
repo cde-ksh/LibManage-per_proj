@@ -10,9 +10,12 @@ def get_file():
     return file
 
 def get_destination():
-    dest = input("Enter your destination: ")
-    destination = BASE_DIR / dest
-    if not destination.exists():
-        destination.mkdir(parents=True, exist_ok=True)
+    dest = input("Enter your destination: ").strip()
+    if not dest:
+        destination = None
+    else:
+        destination = BASE_DIR / dest
+        if not destination.exists():
+            destination.mkdir(parents=True, exist_ok=True)
 
     return destination
