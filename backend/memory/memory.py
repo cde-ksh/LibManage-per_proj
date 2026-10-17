@@ -27,5 +27,12 @@ def rem_rule(keyword, destination):
         "destination": destination
     }
 
+    existing_rules = load_rules()
+
+    existing_rules["rules"].append(rule)
+
     with open(MEMORY_FILE, "w") as f:
-        json.dump(rule, f, indent=4)
+        json.dump(existing_rules, f, indent=4)
+
+    return rule
+
