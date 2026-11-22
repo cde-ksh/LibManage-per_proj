@@ -15,24 +15,47 @@ def load_rules():
         data = {"rules": []}
 
     return data
-    
 
 
+def add_rule(keyword, destination):
+    existing_rules = load_rules()
 
+    for rule in existing_rules["rules"]:
+        if rule["keyword"].lower() == keyword.lower():
+            return rule
 
-
-def rem_rule(keyword, destination):
     rule = {
         "keyword": keyword,
-        "destination": destination
+        "destination": str(destination)
     }
-
-    existing_rules = load_rules()
 
     existing_rules["rules"].append(rule)
 
+    # Persist the updated rules
     with open(MEMORY_FILE, "w") as f:
         json.dump(existing_rules, f, indent=4)
 
     return rule
 
+
+def find_rule(keyword):
+    existing_rules = load_rules()
+    for rule in existing_rules["rules"]:
+        if rule["keyword"].lower() in keyword.lower():
+            return rule["destination"]
+    return None
+        
+
+if __name__ == "__main__":
+
+    print(add_rule("DBMS", "/Documents/DBMS"))
+    print(add_rule("Python", "/Documents/Python"))
+
+    print("\nAll rules:")
+    print(load_rules())
+
+    print("\nFind DBMS:")
+    print(find_rule("DBMS_Unit_4.pdf"))
+
+    print("\nFind unknown:")
+    print(find_rule("unknown.pdf"))

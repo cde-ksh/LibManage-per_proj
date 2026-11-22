@@ -1,0 +1,12 @@
+{
+    "rules": [
+        {
+            "keyword": "DBMS",
+            "destination": "/Documents/DBMS"
+        },
+        {
+            "keyword": "Python",
+            "destination": "/Documents/Python"
+        }
+    ]
+}

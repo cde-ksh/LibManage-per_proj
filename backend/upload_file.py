@@ -1,29 +1,17 @@
 from pathlib import Path
-from backend.memory.memory import rem_rule
 
 BASE_DIR = Path("/Users/kshiraj/Desktop/LibManage/backend/filemanager")
 
 def get_file():
-    file = Path(input("Import your file: "))
+    file = Path(input("Import your file: ").strip()).expanduser()
     if not file.is_file():
-        raise FileNotFoundError("File not exists...")
-    file = file.stem
-    file = file.split("_")
-
+        raise FileNotFoundError(f"File not exists: {file}")
     return file
 
 def get_destination():
-    dest = input("Enter your destination: ").strip()
+    dest = input("Enter your destination (press Enter to skip): ").strip()
     if not dest:
-        destination = None
-    else:
-        destination = BASE_DIR / dest
-        if not destination.exists():
-            destination.mkdir(parents=True, exist_ok=True)
-        return destination
-
+        return None
+    destination = BASE_DIR / dest
+    destination.mkdir(parents=True, exist_ok=True)
     return destination
-
-
-
-rem_rule(get_file(), get_destination())
