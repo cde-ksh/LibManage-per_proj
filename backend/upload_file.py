@@ -1,6 +1,7 @@
 from pathlib import Path
 
-BASE_DIR = Path("/Users/kshiraj/Desktop/LibManage/backend/filemanager")
+# Dynamic base directory relative to the repository / backend
+BASE_DIR = Path(__file__).resolve().parent / "filemanager"
 
 def get_file():
     file = Path(input("Import your file: ").strip()).expanduser()

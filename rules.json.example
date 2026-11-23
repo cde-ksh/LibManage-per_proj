@@ -1,0 +1,8 @@
+{
+    "rules": [
+        {
+            "keyword": "Example",
+            "destination": "/Documents/Example"
+        }
+    ]
+}
